@@ -70,22 +70,9 @@ namespace Customer_Order.Repository
             {
                 return null;
             }
-            Customer c = new Customer();
             Order o = new Order();
             o.DateOfOrder = order.DateOfOrder;
             o.AmountOfOrder = order.AmountOfOrder;
-
-
-
-            List<Order> listoforders = _context.Orders.ToList();
-            List<Customer> listofcustomers = _context.Customers.ToList();
-            var joined = (from or in listoforders
-                          join cs in listofcustomers on or.CustomerId equals cs.Id
-                          select or).ToList();
-
-
-            o.CustomerId = order.CustomerId;
-
             _context.Orders.Add(o);
             await _context.SaveChangesAsync();
             return order;
