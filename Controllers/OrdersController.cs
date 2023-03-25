@@ -22,6 +22,51 @@ namespace Customer_Order.Controllers
             _orderRepository= orderRepository;
         }
 
+        //i. how much order was placed on “2023-01-02”
+        //API Link: api/Orders/GetTotalOrderByDate/2023-01-02
+        [HttpGet("GetTotalOrderByDate/{date}")]
+        public async Task<IActionResult> GetTotalOrderByDate(DateTime date)
+        {
+           
+            var order = await _orderRepository.GetTotalOrderByDate(date);
+
+
+            if (order is null)
+            {
+                return NotFound("There was no order on this date");
+            }
+            return Ok(order);
+        }
+
+        //ii. From which countries the order was placed on “2023-01-02”
+        //API Link: api/Orders/GetCustomerCountryByDate/2023-01-02
+        [HttpGet("GetCustomerCountryByDate/{date}")]
+        public async Task<IActionResult> GetCustomerCountryByDate(DateTime date)
+        {
+            var order = await _orderRepository.GetCustomerCountryByDate(date);
+
+
+            if (order is null)
+            {
+                return NotFound("There was no order on this date");
+            }
+            return Ok(order);
+        }
+
+        //iii. Who ordered on “2023-01-02”
+        //API Link: api/Orders/GetOrderNameByDate/2023-01-02
+
+        [HttpGet("GetOrderNameByDate/{date}")]
+        public async Task<IActionResult> GetOrderNameByDate(DateTime date)
+        {
+            var order = await _orderRepository.GetOrderNameByDate(date);
+            if (order is null)
+            {
+                return NotFound("There was no order on this date");
+            }
+            return Ok(order);
+        }
+
         // GET: api/Orders
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>?>> GetOrders()
@@ -70,42 +115,8 @@ namespace Customer_Order.Controllers
             return Ok(order);
         }
 
-        [HttpGet("GetOrderByDate/{date}")]
-        public async Task<IActionResult> GetOrderByDate(DateTime date)
-        {
-            var order = await _orderRepository.GetOrderByDate(date);
-            if (order is null)
-            {
-                return NotFound();
-            }
-            return Ok(order);
-        }
-
-        [HttpGet("GetCustomerDetailByDate/{date}")]
-        public async Task<IActionResult> GetCustomerDetailByDate(DateTime date)
-        {
-            var order = await _orderRepository.GetCustomerDetailByDate(date);
-
-
-            if (order is null)
-            {
-                return NotFound();
-            }
-            return Ok(order);
-        }
-
-        [HttpGet("GetTotalOrderByDate/{date}")]
-        public async Task<IActionResult> GetTotalOrder(DateTime date)
-        {
-            var order = await _orderRepository.GetTotalOrder(date);
-
-
-            if (order is null)
-            {
-                return NotFound();
-            }
-            return Ok(order);
-        }
+      
+        
 
 
 
