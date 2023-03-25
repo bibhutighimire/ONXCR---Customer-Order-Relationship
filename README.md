@@ -6,41 +6,19 @@ This project has 2 tables, Customers and Orders.  Orders table has the primary k
 i. how much order was placed on “2023-01-02”?
 
 Answer:
-        public async Task<float?> GetTotalOrderByDate(DateTime date)
-        {
-            float? orders = (float)Convert.ToDecimal(await _context.Orders.Where(x => x.DateOfOrder == date).SumAsync(y => y.AmountOfOrder));
-         if (orders.Value == 0)
-            {
-                return null;
-            }
-                return orders;
-        }
-
+![image](https://user-images.githubusercontent.com/12985759/227745486-11a49f8a-a595-444c-a285-cbf2ab81997f.png)
+        
 ii. From which countries the order was placed on “2023-01-02”?
 
 Answer:
-
- public async Task<List<string?>?> GetCustomerCountryByDate(DateTime date)
-        {
-             List<string?>? orders = await _context.Orders.Where(x => x.DateOfOrder == date).Include(z => z.Customer).Select(s =>                                                      s.Customer!.Country).ToListAsync();
-            if (orders == null)
-            {
-                return null;
-            }
-            return orders;
-        }
+![image](https://user-images.githubusercontent.com/12985759/227745497-690ef833-3bc1-4789-b196-5909ab607341.png)
 
 iii. Who ordered on “2023-01-02”?
 
 Answer:
+![image](https://user-images.githubusercontent.com/12985759/227745506-ad1cd787-f393-4c6e-9bad-b9851d078df1.png)
 
-public async Task<List<string?>?> GetOrderNameByDate(DateTime date)
-        {
-           List<string?>? orders = await _context.Orders.Where(x => x.DateOfOrder == date).Include(z => z.Customer).Select(s => s.Customer!.Name).ToListAsync();
-            if (orders == null)
-            {
-                return null;
-            }
-            return orders;
-                }
+Thanks for reading,
+Bibhuti
+
  
