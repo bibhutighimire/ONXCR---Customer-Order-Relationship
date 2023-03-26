@@ -36,6 +36,7 @@ namespace Customer_Order.Repository
             return orders;
         }
         //ii. From which countries the order was placed on “2023-01-02”
+        //API Link: api/Orders/GetCustomerCountryByDate/{Date}
         //API Link: api/Orders/GetCustomerCountryByDate/2023-01-02
         public async Task<List<string?>?> GetCustomerCountryByDate(DateTime date)
         {
@@ -50,6 +51,7 @@ namespace Customer_Order.Repository
         }
 
         //iii. Who ordered on “2023-01-02”
+        //API Link: api/Orders/GetOrderNameByDate/{Date}
         //API Link: api/Orders/GetOrderNameByDate/2023-01-02
 
         public async Task<List<string?>?> GetOrderNameByDate(DateTime date)

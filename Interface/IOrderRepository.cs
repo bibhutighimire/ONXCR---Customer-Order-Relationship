@@ -16,14 +16,9 @@ namespace Customer_Order.Interface
         //iii. Who ordered on “2023-01-02”
         //API Link: api/Orders/GetOrderNameByDate/2023-01-02
         Task<List<string?>?> GetOrderNameByDate(DateTime date);
-
         Task<List<Order>?> GetAllOrders();
-
         Task<Order?> GetOrderById(Guid id);
-       
-
         Task<Order?> DeleteOrderById(Guid id);
-
         Task<Order?> CreateOrder(Order order);
         Task<Order?> UpdateOrderById(Guid id, Order order);
     }
